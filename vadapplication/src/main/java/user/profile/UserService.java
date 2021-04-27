@@ -18,5 +18,7 @@ public class UserService {
 			return userDao.authenticationAfterHash(email, password);
 		}
 	}
-
+	//Пробное изменение для github
+	
+	
 }
