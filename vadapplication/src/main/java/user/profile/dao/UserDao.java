@@ -13,7 +13,6 @@ import user.profile.User;
 import utils.hibernate.SessionFactoryDB;
 
 public class UserDao implements ActionUserDao {
-	private static final int LENGHT_PHONE_NUMBER = 12;
 
 	@Override
 	public User findById(int id) {
@@ -32,16 +31,8 @@ public class UserDao implements ActionUserDao {
 
 	@Override
 	public void update(User user) {
-		String phone = user.getPhone();
-		if (phone.length() > LENGHT_PHONE_NUMBER) {
-			phone = phone.substring(0, LENGHT_PHONE_NUMBER);
-			user.setPhone(phone);
-		}
-		Session session = SessionFactoryDB.getSessionFactory().openSession();
-		Transaction transaction = session.beginTransaction();
-		session.update(user);
-		transaction.commit();
-		session.close();
+		// TODO Auto-generated method stub
+
 	}
 
 	public User authentication(String email, String password) throws Exception {

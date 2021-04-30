@@ -22,12 +22,6 @@
   	<description></description>
   	<servlet-class>user.profile.TestAuth</servlet-class>
   </servlet>
-  <servlet>
-  	<servlet-name>DataUserEditedServlet</servlet-name>
-  	<display-name>DataUserEditedServlet</display-name>
-  	<description></description>
-  	<servlet-class>user.profile.dao.DataUserEditedServlet</servlet-class>
-  </servlet>
   <servlet-mapping>
   	<servlet-name>RegistrationUser</servlet-name>
   	<url-pattern>/RegistrationUser</url-pattern>
@@ -39,10 +33,6 @@
   <servlet-mapping>
   	<servlet-name>TestAuth</servlet-name>
   	<url-pattern>/TestAuth</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>DataUserEditedServlet</servlet-name>
-  	<url-pattern>/DataUserEditedServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>
