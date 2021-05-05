@@ -1,14 +1,22 @@
 package user.profile;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
+
+import request_for_help.service.RequestForHelp;
 
 @Entity
 @Table(name = "users")
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
 	@Column(nullable = false)
 	private String firstname;
 
@@ -22,7 +30,7 @@ public class User {
 
 	@Column(nullable = false)
 	private String password;
-
+	
 	private String aboutuser;
 	private String phone;
 	private byte[] photo;
@@ -30,6 +38,9 @@ public class User {
 	private String region;
 	private String district;
 	private String city;
+	
+//	@OneToMany (mappedBy="authorUser")
+//	private List<RequestForHelp> listRequestsForHelp;
 
 	public User(String userfirstname,String userlastname,String useremail,String userpassword) {
 		this.firstname=userfirstname;
@@ -42,8 +53,6 @@ public class User {
 		
 	}
 	
-	
-
 	public int getId() {
 		return id;
 	}
@@ -91,7 +100,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public String getAboutuser() {
 		return aboutuser;
 	}
@@ -147,5 +156,18 @@ public class User {
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+//	public List<RequestForHelp> getListRequestsForHelp() {
+//		return listRequestsForHelp;
+//	}
+//
+//	public void setListRequestsForHelp(List<RequestForHelp> listRequestsForHelp) {
+//		this.listRequestsForHelp = listRequestsForHelp;
+//	}
+//	
+//	public void addItem(RequestForHelp item) {
+//        listRequestsForHelp.add(item);
+//        item.setAuthorUser(this);
+//    }
 
 }

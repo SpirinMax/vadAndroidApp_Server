@@ -1,28 +1,52 @@
 package request_for_help.service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import user.profile.User;
 
+@Entity
+@Table(name = "test_request")
 public class RequestForHelp {
-	private User author;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	private User authorUser;
 	private String name;
+	private String region;
+	private String district;
 	private String city;
-	private ArrayList<User> listParticipants;
+	private String street;
+	@Column(name = "house_number")
+	private String houseNumber;
+	@Column(name = "creation_date")
+	private LocalDateTime creationDate;
+	@Column(name = "start_date")
 	private LocalDateTime startDate;
 	private String description;
-	
-	public RequestForHelp (User author) {
-		this.author = author;
+
+	public RequestForHelp() {
+
 	}
 
-	public User getAuthor() {
-		return author;
+	public User getAuthorUser() {
+		return authorUser;
 	}
 
-	public void setAuthor(User author) {
-		this.author = author;
+	public void setAuthorUser(User authorUser) {
+		this.authorUser = authorUser;
 	}
 
 	public String getName() {
@@ -33,6 +57,22 @@ public class RequestForHelp {
 		this.name = name;
 	}
 
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
 	public String getCity() {
 		return city;
 	}
@@ -41,12 +81,28 @@ public class RequestForHelp {
 		this.city = city;
 	}
 
-	public ArrayList<User> getListParticipants() {
-		return listParticipants;
+	public String getStreet() {
+		return street;
 	}
 
-	public void setListParticipants(ArrayList<User> listParticipants) {
-		this.listParticipants = listParticipants;
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getHouseNumber() {
+		return houseNumber;
+	}
+
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
+	}
+
+	public LocalDateTime getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(LocalDateTime creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	public LocalDateTime getStartDate() {
@@ -64,6 +120,9 @@ public class RequestForHelp {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+
+	public int getId() {
+		return id;
+	}
+
 }

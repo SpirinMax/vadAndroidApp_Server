@@ -1,11 +1,18 @@
 package user.profile;
 
+import java.util.List;
+
+import request_for_help.service.RequestForHelp;
 import security.EncodedPassword;
 import user.profile.dao.UserDao;
 
 public class UserService {
 
 	private UserDao userDao = new UserDao();
+
+	public User receiveUserById(int id) {
+		return userDao.findById(id);
+	}
 
 	public void register(User user) {
 		userDao.register(user);
@@ -18,9 +25,8 @@ public class UserService {
 			return userDao.authenticationAfterHash(email, password);
 		}
 	}
-	
-	public void updateUserData (User user) {
+
+	public void updateUserData(User user) {
 		userDao.update(user);
 	}
-
 }

@@ -1,4 +1,4 @@
-package user.profile;
+package user.profile.servlets;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,17 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import security.EncodedPassword;
+import user.profile.User;
+import user.profile.UserService;
+
 /**
- * Servlet implementation class AuthenticationServlet
+ * Servlet implementation class RegistrationUser
  */
-public class AuthenticationServlet extends HttpServlet {
+public class RegistrationUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BufferedReader reader;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AuthenticationServlet() {
+	public RegistrationUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,7 +36,7 @@ public class AuthenticationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 	}
 
 	/**
@@ -44,23 +48,26 @@ public class AuthenticationServlet extends HttpServlet {
 		response.setContentType("application/json; charset=UTF-8");
 
 		reader = request.getReader();
-		
 		Gson gson = new Gson();
-		User userPasswordJson = new User();
-		userPasswordJson = gson.fromJson(reader, User.class);
-		String email = userPasswordJson.getEmail();
-		String password = userPasswordJson.getPassword();
-		UserService user = new UserService();
 		
+		User userFromJson = new User();
+		userFromJson = gson.fromJson(reader, User.class);
+		
+		String password = userFromJson.getPassword();
+		userFromJson.setPassword(EncodedPassword.sendHash(password));
+		
+		UserService user = new UserService();
 		try {
-			User responseUserJson = user.authentication(email, password);
-			String StringResponseUserJson = gson.toJson(responseUserJson);
-			PrintWriter out = response.getWriter();
-			out.print(StringResponseUserJson);
-		} catch (Exception e) {
-			response.setStatus(401);
-		}
+			user.register(userFromJson);
 
+			String responseJson = gson.toJson(userFromJson);
+			PrintWriter out = response.getWriter();
+			out.print(responseJson);
+		} catch (Exception e) {
+			response.setStatus(500);
+		} finally {
+			reader.close();
+		} 
 	}
 
 }

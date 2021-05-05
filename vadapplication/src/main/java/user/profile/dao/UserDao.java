@@ -1,9 +1,11 @@
 package user.profile.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.query.Query;
 
+import request_for_help.service.RequestForHelp;
 import security.EncodedPassword;
 
 import org.hibernate.Session;
@@ -18,7 +20,11 @@ public class UserDao implements ActionUserDao {
 	@Override
 	public User findById(int id) {
 		Session session = SessionFactoryDB.getSessionFactory().getCurrentSession();
-		return session.get(User.class, id);
+		Transaction transaction = session.beginTransaction();
+		User user = session.get(User.class, id);
+		transaction.commit();
+		session.close();
+		return user;
 	}
 
 	@Override
