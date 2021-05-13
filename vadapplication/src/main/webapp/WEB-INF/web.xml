@@ -29,10 +29,28 @@
 		<servlet-class>user.profile.servlets.DataUserEditedServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>OriginalRequestForHelp</servlet-name>
-		<display-name>OriginalRequestForHelp</display-name>
+		<servlet-name>ProcessingAddedParticipantServlet</servlet-name>
+		<display-name>ProcessingAddedParticipantServlet</display-name>
 		<description></description>
-		<servlet-class>request_for_help.servlets.OriginalRequestForHelp</servlet-class>
+		<servlet-class>request_for_help.servlets.ProcessingAddedParticipantServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CreatingNewRequestServlet</servlet-name>
+		<display-name>CreatingNewRequestServlet</display-name>
+		<description></description>
+		<servlet-class>request_for_help.servlets.CreatingNewRequestServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ReceivingAllRequests</servlet-name>
+		<display-name>ReceivingAllRequests</display-name>
+		<description></description>
+		<servlet-class>request_for_help.servlets.ReceivingAllRequests</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DeletingParticipantServlet</servlet-name>
+		<display-name>DeletingParticipantServlet</display-name>
+		<description></description>
+		<servlet-class>request_for_help.servlets.DeletingParticipantServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegistrationUser</servlet-name>
@@ -51,8 +69,20 @@
 		<url-pattern>/DataUserEditedServlet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>OriginalRequestForHelp</servlet-name>
-		<url-pattern>/OriginalRequestForHelp</url-pattern>
+		<servlet-name>ProcessingAddedParticipantServlet</servlet-name>
+		<url-pattern>/ProcessingAddedParticipantServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreatingNewRequestServlet</servlet-name>
+		<url-pattern>/CreatingNewRequestServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ReceivingAllRequests</servlet-name>
+		<url-pattern>/ReceivingAllRequests</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeletingParticipantServlet</servlet-name>
+		<url-pattern>/DeletingParticipantServlet</url-pattern>
 	</servlet-mapping>
 
 </web-app>

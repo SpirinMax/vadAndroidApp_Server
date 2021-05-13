@@ -46,28 +46,33 @@ public class RegistrationUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json; charset=UTF-8");
-
+		PrintWriter out = null;
 		reader = request.getReader();
 		Gson gson = new Gson();
-		
+
 		User userFromJson = new User();
 		userFromJson = gson.fromJson(reader, User.class);
-		
+
 		String password = userFromJson.getPassword();
 		userFromJson.setPassword(EncodedPassword.sendHash(password));
-		
+
 		UserService user = new UserService();
 		try {
 			user.register(userFromJson);
 
 			String responseJson = gson.toJson(userFromJson);
-			PrintWriter out = response.getWriter();
+			out = response.getWriter();
 			out.print(responseJson);
 		} catch (Exception e) {
 			response.setStatus(500);
 		} finally {
-			reader.close();
-		} 
+			if (reader != null) {
+				reader.close();
+			}
+			if (out != null) {
+				out.close();
+			}
+		}
 	}
 
 }

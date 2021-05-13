@@ -45,7 +45,7 @@ public class DataUserEditedServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json; charset=UTF-8");
-
+		PrintWriter out = null;
 		reader = request.getReader();
 		Gson gson = new Gson();
 		User editedUserData = new User();
@@ -55,12 +55,17 @@ public class DataUserEditedServlet extends HttpServlet {
 		try {
 			userService.updateUserData(editedUserData);
 			String StringResponseUserJson = gson.toJson(editedUserData);
-			PrintWriter out = response.getWriter();
+			out = response.getWriter();
 			out.print(StringResponseUserJson);
 		} catch (Exception e) {
 			response.setStatus(404);
 		} finally {
-			reader.close();
+			if (reader != null) {
+				reader.close();
+			}
+			if (out != null) {
+				out.close();
+			}
 		}
 	}
 

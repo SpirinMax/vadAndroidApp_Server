@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -53,9 +54,8 @@ public class TestAuth extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json; charset=UTF-8");
-
+		PrintWriter out = null;
 		Gson gson = new Gson();
-
 		UserService userService = new UserService();
 
 		int idAuthor = Integer.valueOf(request.getParameter("idAuthor"));
@@ -76,14 +76,12 @@ public class TestAuth extends HttpServlet {
 		requestForHelp.setCity(city);
 		requestForHelp.setStreet(street);
 		requestForHelp.setHouseNumber(houseNumber);
-		requestForHelp.setCreationDate(LocalDateTime.now());
-		requestForHelp.setStartDate(LocalDateTime.now());
+		requestForHelp.setCreationDate(Calendar.getInstance());
+		requestForHelp.setStartDate(Calendar.getInstance());
 		requestForHelp.setDescription(description);
 
 		User authorUser = userService.receiveUserById(idAuthor);
-
 		List<RequestForHelp> listRequest = new ArrayList<RequestForHelp>();
-
 		RequestForHelpService requestForHelpService = new RequestForHelpService();
 
 		try {
@@ -91,14 +89,17 @@ public class TestAuth extends HttpServlet {
 			listRequest = requestForHelpService.receiveRequestThatAuthorCreated(authorUser);
 			requestForHelpService.hideCredentialsDataInRequest(listRequest);
 			String StringResponseJson = gson.toJson(listRequest);
-			PrintWriter out = response.getWriter();
+			out = response.getWriter();
 			out.print(StringResponseJson);
 		} catch (Exception e) {
 			response.setStatus(401);
 		} finally {
-			reader.close();
+			if (reader != null) {
+				reader.close();
+			}
+			if (out != null) {
+				out.close();
+			}
 		}
-
 	}
-
 }
