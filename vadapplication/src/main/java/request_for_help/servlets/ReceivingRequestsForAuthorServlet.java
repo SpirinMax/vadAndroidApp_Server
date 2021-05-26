@@ -17,15 +17,15 @@ import request_for_help.service.RequestForHelp;
 import request_for_help.service.RequestForHelpService;
 
 /**
- * Servlet implementation class ReceivingAllRequests
+ * Servlet implementation class ReceivingRequestsForAuthorServlet
  */
-public class ReceivingAllRequests extends HttpServlet {
+public class ReceivingRequestsForAuthorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ReceivingAllRequests() {
+	public ReceivingRequestsForAuthorServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,11 +39,12 @@ public class ReceivingAllRequests extends HttpServlet {
 		response.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = null;
 		Gson gson = new Gson();
+		int idAuthor = Integer.parseInt(request.getParameter("idAuthor"));
 		List<RequestForHelp> listRequests = new ArrayList<RequestForHelp>();
 		RequestForHelpService requestForHelpService = new RequestForHelpService();
 
 		try {
-			listRequests = requestForHelpService.receiveAllRequests();
+			listRequests = requestForHelpService.receiveRequestThatAuthorCreated(idAuthor);
 			//requestForHelpService.hideCredentialsData(listRequests);
 			String StringResponseJson = gson.toJson(listRequests);
 			out = response.getWriter();
@@ -55,16 +56,6 @@ public class ReceivingAllRequests extends HttpServlet {
 				out.close();
 			}
 		}
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
 	}
 
 }

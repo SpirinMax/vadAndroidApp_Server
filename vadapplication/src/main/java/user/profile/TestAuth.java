@@ -86,8 +86,9 @@ public class TestAuth extends HttpServlet {
 
 		try {
 			requestForHelpService.createRequestForHelp(requestForHelp, authorUser);
-			listRequest = requestForHelpService.receiveRequestThatAuthorCreated(authorUser);
-			requestForHelpService.hideCredentialsDataInRequest(listRequest);
+			int idAuthorUser = authorUser.getId();
+			listRequest = requestForHelpService.receiveRequestThatAuthorCreated(idAuthorUser);
+			requestForHelpService.hideCredentialsData(listRequest);
 			String StringResponseJson = gson.toJson(listRequest);
 			out = response.getWriter();
 			out.print(StringResponseJson);

@@ -42,7 +42,7 @@ public class DeletingParticipantServlet extends HttpServlet {
 		try {
 			requestForHelpService.deleteParticipant(idParticipant, idRequest);
 			RequestForHelp editedRequestForHelp = requestForHelpService.findRequestByherId(idRequest);
-			requestForHelpService.hideCredentialsDataInListParticipants(editedRequestForHelp);
+			//requestForHelpService.hideCredentialsData(editedRequestForHelp);
 			String StringResponseJson = gson.toJson(editedRequestForHelp);
 			out = response.getWriter();
 			out.print(StringResponseJson);

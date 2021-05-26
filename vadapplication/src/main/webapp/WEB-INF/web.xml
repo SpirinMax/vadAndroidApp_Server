@@ -52,6 +52,30 @@
 		<description></description>
 		<servlet-class>request_for_help.servlets.DeletingParticipantServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ReceivingRequestsForParticipantsServlet</servlet-name>
+		<display-name>ReceivingRequestsForParticipantsServlet</display-name>
+		<description></description>
+		<servlet-class>request_for_help.servlets.ReceivingRequestsForParticipantsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ReceivingRequestsForAuthorServlet</servlet-name>
+		<display-name>ReceivingRequestsForAuthorServlet</display-name>
+		<description></description>
+		<servlet-class>request_for_help.servlets.ReceivingRequestsForAuthorServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>QuestRequestsForParametersServlet</servlet-name>
+		<display-name>QuestRequestsForParametersServlet</display-name>
+		<description></description>
+		<servlet-class>request_for_help.servlets.QuestRequestsForParametersServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>TestServlet</servlet-name>
+		<display-name>TestServlet</display-name>
+		<description></description>
+		<servlet-class>request_for_help.servlets.TestServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegistrationUser</servlet-name>
 		<url-pattern>/RegistrationUser</url-pattern>
@@ -84,5 +108,20 @@
 		<servlet-name>DeletingParticipantServlet</servlet-name>
 		<url-pattern>/DeletingParticipantServlet</url-pattern>
 	</servlet-mapping>
-
+	<servlet-mapping>
+		<servlet-name>ReceivingRequestsForParticipantsServlet</servlet-name>
+		<url-pattern>/ReceivingRequestsForParticipantsServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ReceivingRequestsForAuthorServlet</servlet-name>
+		<url-pattern>/ReceivingRequestsForAuthorServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>QuestRequestsForParametersServlet</servlet-name>
+		<url-pattern>/QuestRequestsForParametersServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/TestServlet</url-pattern>
+	</servlet-mapping>
 </web-app>

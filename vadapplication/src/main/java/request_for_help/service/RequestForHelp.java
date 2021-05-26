@@ -22,7 +22,7 @@ import javax.persistence.Table;
 import user.profile.User;
 
 @Entity
-@Table(name = "test_request")
+@Table(name = "requests")
 public class RequestForHelp implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,13 +43,27 @@ public class RequestForHelp implements Serializable {
 	@Column(name = "start_date")
 	private Calendar startDate;
 	private String description;
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "participants", joinColumns = { @JoinColumn(name = "id_request") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_user") })
 	private Set<User> participants = new HashSet<User>();
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "photo_reports_in_request", joinColumns = {
+			@JoinColumn(name = "id_request") }, inverseJoinColumns = { @JoinColumn(name = "id_photo_report") })
+	private Set<PhotoReport> photoReports = new HashSet<PhotoReport>();
+
 	public RequestForHelp() {
 
+	}
+
+	public Set<PhotoReport> getPhotoReports() {
+		return photoReports;
+	}
+
+	public void setPhotoReports(Set<PhotoReport> photoReports) {
+		this.photoReports = photoReports;
 	}
 
 	public User getAuthorUser() {
@@ -152,5 +166,4 @@ public class RequestForHelp implements Serializable {
 		return id;
 	}
 
-	
 }
