@@ -28,18 +28,16 @@ public class PhotoReport {
 	private User authorReport;
 	private String name;
 	private String description;
+
 	@OneToMany (fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_photo_report")
 	private Set<ImagePhotoReport> images = new HashSet<ImagePhotoReport>();
+
 	@Column(name = "creation_date")
 	private Calendar creationDate;
 
 	public User getAuthorReport() {
 		return authorReport;
-	}
-
-	public void setAuthorReport(User authorReport) {
-		this.authorReport = authorReport;
 	}
 
 	public Set<ImagePhotoReport> getImages() {
@@ -48,6 +46,14 @@ public class PhotoReport {
 
 	public void setImages(Set<ImagePhotoReport> images) {
 		this.images = images;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setAuthorReport(User authorReport) {
+		this.authorReport = authorReport;
 	}
 
 	public String getName() {

@@ -76,6 +76,12 @@
 		<description></description>
 		<servlet-class>request_for_help.servlets.TestServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>CreatingPhotoReportServlet</servlet-name>
+		<display-name>CreatingPhotoReportServlet</display-name>
+		<description></description>
+		<servlet-class>request_for_help.servlets.CreatingPhotoReportServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegistrationUser</servlet-name>
 		<url-pattern>/RegistrationUser</url-pattern>
@@ -123,5 +129,9 @@
 	<servlet-mapping>
 		<servlet-name>TestServlet</servlet-name>
 		<url-pattern>/TestServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreatingPhotoReportServlet</servlet-name>
+		<url-pattern>/CreatingPhotoReportServlet</url-pattern>
 	</servlet-mapping>
 </web-app>
